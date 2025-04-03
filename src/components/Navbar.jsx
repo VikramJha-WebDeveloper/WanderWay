@@ -49,10 +49,7 @@ const NavSection = styled.div`
   }
 `;
 
-const Navbar = ({knowName, userName}) => {
-  const logoutUser = () => {
-    window.location.reload();
-  }
+const Navbar = ({knowName, userName, logoutUser}) => {
   return (
     <NavSection>
       <nav className="navbar navbar-expand-lg bg-body-tertiary">

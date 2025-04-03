@@ -5,7 +5,7 @@ import { Navigate } from "react-router-dom";
 
 // import components
 import Navbar from "./components/Navbar";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { HashRouter as Router, Routes, Route } from "react-router-dom";
 import {ToastContainer} from "react-toastify";
 
 // import pages
@@ -50,9 +50,12 @@ function App() {
   const knowName = (userName) => {
     setUserName(userName);
   }
+  const logoutUser = () => {
+    window.location.reload();
+  }
   return (
-    <BrowserRouter basename="/WanderWay/">
-    <Navbar knowName={knowName} userName={userName}/>
+    <Router>
+    <Navbar knowName={knowName} userName={userName} logoutUser={logoutUser}/>
     <AppStyle>
       
       <Routes>
@@ -69,7 +72,7 @@ function App() {
       <Footer />
     </AppStyle>
     <ToastContainer position="top-center"/>
-    </BrowserRouter>
+    </Router>
   );
 }
 
