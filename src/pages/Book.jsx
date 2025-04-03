@@ -4,6 +4,7 @@ import AOS from "aos";
 
 // import components
 import PageHeading from "../components/PageHeading";
+import Footer from "../components/Footer";
 
 const BookSection = styled.div`
 overflow: hidden;
@@ -161,6 +162,7 @@ const Book = () => {
         </div>
       </div>
     </div>
+    <Footer />
     </BookSection>
   );
 };

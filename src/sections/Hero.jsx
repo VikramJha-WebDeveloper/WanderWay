@@ -7,7 +7,7 @@ import { toast } from "react-toastify";
 const HeroSection = styled.div`
 position: relative;
 #hero{
-    height: calc(90vh + 16px);
+    height: calc(100vh - 56px);
     width: 100%;
     background-repeat: no-repeat;
     background-size: cover;
@@ -145,7 +145,7 @@ const Hero = ({userName}) => {
     navigate("/book")
   }
   return (
-    <HeroSection className="mb-3">
+    <HeroSection>
       <div id="hero">
         <div className="background-overlay"></div>
         <video autoPlay loop muted>

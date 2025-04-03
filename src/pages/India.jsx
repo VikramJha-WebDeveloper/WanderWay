@@ -4,6 +4,7 @@ import AOS from "aos";
 
 // import components
 import PageHeading from "../components/PageHeading";
+import Footer from "../components/Footer";
 
 const PackageSection = styled.div`
   #package .col {
@@ -112,6 +113,7 @@ const India = () => {
         ))}
         </div>
       </div>
+      <Footer />
     </PackageSection>
   );
 };

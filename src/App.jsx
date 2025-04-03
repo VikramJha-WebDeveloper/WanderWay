@@ -14,7 +14,6 @@ import Book from "./pages/Book";
 import Services from "./pages/Services";
 import Gallery from "./pages/Gallery";
 import AboutUs from "./pages/AboutUs";
-import Footer from "./components/Footer";
 import UnitedState from "./pages/UnitedState";
 import India from "./pages/India";
 import France from "./pages/France";
@@ -57,7 +56,7 @@ function App() {
     <Router>
     <Navbar knowName={knowName} userName={userName} logoutUser={logoutUser}/>
     <AppStyle>
-      
+
       <Routes>
         <Route path="/" element={<Home userName={userName} />}></Route>
         <Route path="/book" element={userName?<Book/>:<Navigate to="/" />}></Route>
@@ -69,7 +68,7 @@ function App() {
         <Route path="/packages/france" element={userName?<France />:<Navigate to="/" />}></Route>
         <Route path="/packages/germany" element={userName?<Germany />:<Navigate to="/" />}></Route>
       </Routes>
-      <Footer />
+      {/* <Footer /> */}
     </AppStyle>
     <ToastContainer position="top-center"/>
     </Router>

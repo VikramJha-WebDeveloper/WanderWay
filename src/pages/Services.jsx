@@ -2,8 +2,9 @@ import React, {useEffect} from "react";
 import Slider from "react-slick"; // Import the Slider component
 import AOS from "aos";
 
-import PageTitle from "../components/PageTitle";
+// import components
 import PageHeading from "../components/PageHeading";
+import Footer from "../components/Footer";
 
 const Services = () => {
   useEffect(()=>{
@@ -89,7 +90,9 @@ const Services = () => {
           ))
         }
       </Slider>
+      
     </div>
+    <Footer />
     </>
   );
 };
