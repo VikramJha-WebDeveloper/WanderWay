@@ -18,7 +18,7 @@ const NavSection = styled.div`
     left: 0;
     z-index: 1;
   }
-  .nav-link{
+  .nav-link {
     padding-left: 1rem;
     padding-right: 1rem;
   }
@@ -36,20 +36,20 @@ const NavSection = styled.div`
   .dropdown-menu[data-bs-popper] {
     right: 0;
     left: auto;
+    top: 31px;
   }
   .navbar-nav .nav-link.active {
     background: teal;
     color: white;
   }
-  .logout{
-    
+  .logout {
   }
-  .logout:hover{
+  .logout:hover {
     background: teal;
   }
 `;
 
-const Navbar = ({knowName, userName, logoutUser}) => {
+const Navbar = ({ knowName, userName, logoutUser }) => {
   return (
     <NavSection>
       <nav className="navbar navbar-expand-lg bg-body-tertiary">
@@ -78,97 +78,127 @@ const Navbar = ({knowName, userName, logoutUser}) => {
                   Home
                 </NavLink>
               </li>
-              {userName?<>
-                <li className="nav-item">
-                <NavLink className="nav-link rounded" to="/book">
-                  Book
-                </NavLink>
-              </li>
-              <li className="nav-item dropdown">
-                <a
-                  className="nav-link dropdown-toggle"
-                  href="#"
-                  role="button"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false"
-                >
-                  Packages
-                </a>
-                <ul className="dropdown-menu px-1">
-                  <li>
-                    <NavLink
-                      className="dropdown-item rounded"
-                      to="/packages/united-state"
+              {userName ? (
+                <>
+                  <li className="nav-item">
+                    <NavLink className="nav-link rounded" to="/book">
+                      Book
+                    </NavLink>
+                  </li>
+                  <li className="nav-item dropdown">
+                    <a
+                      className="nav-link dropdown-toggle"
+                      href="#"
+                      role="button"
+                      data-bs-toggle="dropdown"
+                      aria-expanded="false"
                     >
-                      United State
+                      Packages
+                    </a>
+                    <ul className="dropdown-menu px-1">
+                      <li>
+                        <NavLink
+                          className="dropdown-item rounded"
+                          to="/packages/united-state"
+                        >
+                          United State
+                        </NavLink>
+                      </li>
+                      <li>
+                        <NavLink
+                          className="dropdown-item rounded"
+                          to="/packages/india"
+                        >
+                          India
+                        </NavLink>
+                      </li>
+                      <li>
+                        <NavLink
+                          className="dropdown-item rounded"
+                          to="/packages/france"
+                        >
+                          France
+                        </NavLink>
+                      </li>
+                      <li>
+                        <NavLink
+                          className="dropdown-item rounded"
+                          to="/packages/germany"
+                        >
+                          Germany
+                        </NavLink>
+                      </li>
+                    </ul>
+                  </li>
+                  <li className="nav-item">
+                    <NavLink className="nav-link rounded" to="/service">
+                      Services
                     </NavLink>
                   </li>
-                  <li>
-                    <NavLink className="dropdown-item rounded" to="/packages/india">
-                      India
+                  <li className="nav-item">
+                    <NavLink className="nav-link rounded" to="/gallery">
+                      Gallery
                     </NavLink>
                   </li>
-                  <li>
-                    <NavLink className="dropdown-item rounded" to="/packages/france">
-                      France
+                  <li className="nav-item">
+                    <NavLink className="nav-link rounded" to="/about">
+                      About
                     </NavLink>
                   </li>
-                  <li>
-                    <NavLink className="dropdown-item rounded" to="/packages/germany">
-                      Germany
-                    </NavLink>
-                  </li>
-                </ul>
-              </li>
-              <li className="nav-item">
-                <NavLink className="nav-link rounded" to="/service">
-                  Services
-                </NavLink>
-              </li>
-              <li className="nav-item">
-                <NavLink className="nav-link rounded" to="/gallery">
-                  Gallery
-                </NavLink>
-              </li>
-              <li className="nav-item">
-                <NavLink className="nav-link rounded" to="/about">
-                  About
-                </NavLink>
-              </li>
-              </>
-                :
-                <></>}
-              
+                </>
+              ) : (
+                <></>
+              )}
             </ul>
             <div className="login_register">
-              {userName?<div className="dropdown">
-  <button className="btn btn-secondary dropdown-toggle bg-dark" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-  <span className="m-0 p-0 h6">{userName} <i className="bi bi-person-fill"></i></span>
-  </button>
-  <ul className="dropdown-menu bg-dark p-2">
-    <li><a className="dropdown-item text-light logout rounded" href="#" onClick={logoutUser}>Logout</a></li>
-  </ul>
-</div>:<><button
-                className="btn btn-dark mx-1"
-                data-bs-toggle="modal"
-                data-bs-target="#loginModal"
-              >
-                Login
-              </button>
-              <button
-                className="btn btn-dark"
-                data-bs-toggle="modal"
-                data-bs-target="#registerModal"
-              >
-                Register
-              </button></>}
-              
+              {userName ? (
+                <div className="dropdown d-inline position-relative">
+                  <button
+                    className="btn btn-secondary dropdown-toggle bg-dark"
+                    type="button"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false"
+                  >
+                    <span className="m-0 p-0 h6">
+                      {userName} <i className="bi bi-person-fill"></i>
+                    </span>
+                  </button>
+                  <ul className="dropdown-menu position-absolute bg-dark p-2">
+                    <li>
+                      <a
+                        className="dropdown-item text-light logout rounded"
+                        href="#"
+                        onClick={logoutUser}
+                      >
+                        Logout
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              ) : (
+                <>
+                  <button
+                    className="btn btn-dark mx-1"
+                    data-bs-toggle="modal"
+                    data-bs-target="#loginModal"
+                  >
+                    Login
+                  </button>
+                  <button
+                    className="btn btn-dark"
+                    data-bs-toggle="modal"
+                    data-bs-target="#registerModal"
+                  >
+                    Register
+                  </button>
+                </>
+              )}
             </div>
           </div>
         </div>
       </nav>
       <Registration />
-      <Login knowName={knowName}/>
+      <Login knowName={knowName} />
     </NavSection>
   );
 };
