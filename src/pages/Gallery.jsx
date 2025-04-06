@@ -4,7 +4,6 @@ import AOS from "aos";
 
 // import components
 import PageHeading from "../components/PageHeading";
-import Footer from "../components/Footer";
 
 const GallerySection = styled.div`
   .card {
@@ -257,7 +256,6 @@ const Gallery = () => {
           </div>
         </div>
       </div>
-      <Footer />
     </GallerySection>
   );
 };

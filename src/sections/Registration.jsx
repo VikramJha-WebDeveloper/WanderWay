@@ -103,7 +103,8 @@ const Registration = () => {
       setPasswordError("Please enter strong password and should be 12 characters long⚠️");
     }
   }
-
+   
+  // birth date validation
   const birthDateValidation = (e) => {
     setBirthDate(e.target.value);
     const pattern = /^\d{4}-\d{2}-\d{2}$/;

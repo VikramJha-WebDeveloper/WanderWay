@@ -7,6 +7,7 @@ import { Navigate } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import { HashRouter as Router, Routes, Route } from "react-router-dom";
 import {ToastContainer} from "react-toastify";
+import Footer from "./components/Footer";
 
 // import pages
 import Home from "./pages/Home";
@@ -54,9 +55,8 @@ function App() {
   }
   return (
     <Router>
-    <Navbar knowName={knowName} userName={userName} logoutUser={logoutUser}/>
+      <Navbar knowName={knowName} userName={userName} logoutUser={logoutUser}/>
     <AppStyle>
-
       <Routes>
         <Route path="/" element={<Home userName={userName} />}></Route>
         <Route path="/book" element={userName?<Book/>:<Navigate to="/" />}></Route>
@@ -68,8 +68,8 @@ function App() {
         <Route path="/packages/france" element={userName?<France />:<Navigate to="/" />}></Route>
         <Route path="/packages/germany" element={userName?<Germany />:<Navigate to="/" />}></Route>
       </Routes>
-      {/* <Footer /> */}
     </AppStyle>
+    <Footer />
     <ToastContainer position="top-center"/>
     </Router>
   );

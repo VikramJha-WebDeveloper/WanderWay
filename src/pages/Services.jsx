@@ -4,7 +4,6 @@ import AOS from "aos";
 
 // import components
 import PageHeading from "../components/PageHeading";
-import Footer from "../components/Footer";
 
 const Services = () => {
   useEffect(()=>{
@@ -92,7 +91,6 @@ const Services = () => {
       </Slider>
       
     </div>
-    <Footer />
     </>
   );
 };

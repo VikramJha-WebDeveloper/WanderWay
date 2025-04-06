@@ -4,7 +4,6 @@ import AOS from "aos";
 
 // import components
 import PageHeading from "../components/PageHeading";
-import Footer from "../components/Footer";
 
 const AboutUsSection = styled.div`
 overflow: hidden;
@@ -55,7 +54,6 @@ const AboutUs = () => {
             </div>
           </div>
         </div>
-        <Footer />
     </AboutUsSection>
   );
 };

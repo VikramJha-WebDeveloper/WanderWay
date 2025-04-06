@@ -1,10 +1,10 @@
 import React, {useEffect, useState} from "react";
 import styled from "styled-components";
 import AOS from "aos";
+import { toast } from "react-toastify";
 
 // import components
 import PageHeading from "../components/PageHeading";
-import Footer from "../components/Footer";
 
 const BookSection = styled.div`
 overflow: hidden;
@@ -32,6 +32,17 @@ const Book = () => {
   const [startTripDate, setStartTripDate] = useState("");
   const [endTripDate, setEndTripDate] = useState("");
   const [isDisabled, setIsDisabled] = useState(true);
+
+  const [destination, setDestination] = useState("United States");
+  const [travelerNumbers, setTravelerNumbers] = useState("");
+  const [tripDetails, setTripDetails] = useState("");
+
+  // set errors
+  const [destinationError, setDestinationError] = useState("");
+  const [travelerNumbersError, setTravelerNumbersError] = useState("");
+  const [startTripDateError, setStartTripDateError] = useState("");
+  const [endTripDateError, setEndTripDateError] = useState("");
+  const [tripDetailsError, setTripDetailsError] = useState("");
 
   // setting trip starting date
   const now = new Date();
@@ -81,6 +92,32 @@ const Book = () => {
   const handleEndingTrip = (e) => {
     setEndTripDate(e.target.value);
   }
+  
+  const collectData = (e)=>{
+    e.preventDefault();
+    if(!destination){
+      setDestinationError("*Please choose Your Destination⚠️");
+    }
+    if(!travelerNumbers){
+      setTravelerNumbersError("*Please enter number of travelers⚠️");
+    }
+    if(!startTripDate){
+      setStartTripDateError("*Please choose start trip date⚠️");
+    }
+    if(!endTripDate){
+      setEndTripDateError("*Please choose end trip date⚠️");
+    }
+    if(!tripDetails){
+      setTripDetailsError("*Description needs to be enter minimum 50 characters and maximum 500 characters⚠️");
+    }
+    if(destination && travelerNumbers && startTripDate && endTripDate && travelerNumbers){
+      toast.success("Booking successfful");
+      setTravelerNumbers(""); setStartTripDate(""); setEndTripDate(""); setTripDetails(""); setDestinationError(""); 
+      setTravelerNumbersError(""); setStartTripDateError(""); setEndTripDateError(""); setTripDetailsError("");
+    }
+  }
+ 
+  console.log(travelerNumbersError);
   return (
     <BookSection>
       <PageHeading pageHeading="Book" />
@@ -95,8 +132,8 @@ const Book = () => {
         <div className="d-flex flex-column justify-content-center col-lg-6 mt-4 mt-lg-0" data-aos="fade-left" data-aos-delay="300">
           <div className="card p-4 border-0">
             <div className="card-body">
-              <form>
-                <select className="form-select" required>
+              <form onSubmit={collectData}>
+                <select className={`form-select ${destinationError?"is-invalid":""}`} required onChange={(e)=>setDestination(e.target.value)}>
                   <option value="" disabled defaultValue="Select Your Destination">Select Your Destination</option>
                   <option value="UnitedStates">United States</option>
                   <option value="India">India</option>
@@ -104,11 +141,13 @@ const Book = () => {
                   <option value="Germany">Germany</option>
                   <option value="Australia">Australia</option>
                 </select>
+                <span>{destinationError}</span>
                 <div className="mt-3">
                   <label className="form-label" htmlFor="persons">
                     Number of Travelers:
                   </label>
-                  <input type="text" className="form-control" required />
+                  <input type="number" className={`form-control ${travelerNumbersError? "is-invalid":""}`} value={travelerNumbers} onChange={(e)=>setTravelerNumbers(e.target.value)} />
+                  <span className="invalid-feedback">{travelerNumbersError}</span>
                 </div>
                 <div className="mt-3">
                   <label className="form-label startDate" htmlFor="startDate">
@@ -116,13 +155,13 @@ const Book = () => {
                   </label>
                   <input
                     type="date"
-                    className="form-control"
+                    className={`form-control ${startTripDateError?"is-invalid":""}`}
                     id="startDate"
                     min={formattedStartingDate}
                     value={startTripDate}
                     onChange={handleStartingTripDate}
-                    required
                   />
+                  <span className="invalid-feedback">{startTripDateError}</span>
                 </div>
                 <div className="mt-3">
                   <label htmlFor="endDate" className="form-label endDate">
@@ -131,25 +170,27 @@ const Book = () => {
                   <input
                     disabled={isDisabled}
                     type="date"
-                    className="form-control"
+                    className={`form-control ${endTripDateError?"is-invalid":""}`}
                     id="endDate"
                     min={formattedEndingDate}
                     value={endTripDate}
                     onChange={handleEndingTrip}
-                    required
                   />
+                  <span className="invalid-feedback">{endTripDateError}</span>
                 </div>
                 <div className="mt-3">
                   <label className="form-label" htmlFor="message">
-                    Trip Details (Optional):
+                    Trip Details:
                   </label>
                   <textarea
                     id="message"
-                    className="form-control"
+                    className={`form-control ${travelerNumbersError?"is-invalid":""}`}
                     minLength="50"
                     maxLength="500"
-                    required
+                    value={tripDetails}
+                    onChange={(e)=>setTripDetails(e.target.value)}
                   ></textarea>
+                  <span className="invalid-feedback">{tripDetailsError}</span>{}
                 </div>
                 <div className="mt-3">
                   <button type="submit" className="text-light btn btn-">
@@ -162,7 +203,6 @@ const Book = () => {
         </div>
       </div>
     </div>
-    <Footer />
     </BookSection>
   );
 };
