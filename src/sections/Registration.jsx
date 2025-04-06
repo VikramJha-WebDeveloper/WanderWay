@@ -70,13 +70,17 @@ const Registration = () => {
   // name validation
   const nameValidation = (e)=>{
     const pattern = /^[a-zA-Z ]{3,}$/gm;
-    setName(e.target.value.trim());
+    if(e.target.value.startsWith(" ")){
+      setNameError("Name cannot start with a space⚠️");
+      return;
+    }
+    setName(e.target.value);
     if(pattern.test(e.target.value)){
       setNameError("");
 
       setNamePatternMatched(true);
     }else{
-      setNameError("Enter a valid name⚠️")
+      setNameError("Enter a valid name⚠️");
     };
   };
 
@@ -167,7 +171,7 @@ const Registration = () => {
               <div className="modal-body">
                 <div className="container">
                   <div className="row justify-content-center">
-                    <div className="col-md-6">
+                    <div className="col-lg-6">
                       <i
                         className="bi bi-x-lg close text-light display-6 end-0 position-absolute"
                         data-bs-dismiss="modal"

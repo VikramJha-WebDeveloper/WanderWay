@@ -77,7 +77,7 @@ const Login = ({knowName}) => {
               <div className="modal-body">
                 <div className="container">
                   <div className="row justify-content-center">
-                    <div className="col-md-6">
+                    <div className="col-lg-6">
                       <i
                         className="bi bi-x-lg close text-light display-6 end-0 position-absolute"
                         data-bs-dismiss="modal"
