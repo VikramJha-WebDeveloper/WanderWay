@@ -51,10 +51,10 @@ const Book = () => {
 
   now.setMonth(now.getMonth()+1)
   let startingMonth = now.getMonth();
-
-  if(startingMonth<=8){
+  console.log(startingMonth)
+  if(startingMonth<=9){
     startingMonth = "0"+startingMonth;
-  }else if(startingMonth>8){
+  }else if(startingMonth>9){
     startingMonth = startingMonth;
   }
 
@@ -72,6 +72,7 @@ const Book = () => {
 
   // setting trip ending date
   const end = new Date(startTripDate);
+  console.log(startTripDate)
   end.setDate(end.getDate()+1)
   let endingDate = end.getDate();
 
@@ -79,8 +80,10 @@ const Book = () => {
   let endingMonth = end.getMonth();
   let endingYear = end.getFullYear();
 
-  if(endingMonth<=8){
+  if(endingMonth<=9){
     endingMonth = "0"+(endingMonth)
+  }else{
+    endingMonth = endingMonth
   }
   if(endingDate<=9){
     endingDate = "0"+(endingDate)
@@ -97,20 +100,30 @@ const Book = () => {
     e.preventDefault();
     if(!destination){
       setDestinationError("*Please choose Your Destination⚠️");
+    }else{
+      setDestinationError("");
     }
     if(!travelerNumbers){
       setTravelerNumbersError("*Please enter number of travelers⚠️");
+    }else{
+      setTravelerNumbersError("");
     }
     if(!startTripDate){
       setStartTripDateError("*Please choose start trip date⚠️");
+    }else{
+      setStartTripDateError("");
     }
     if(!endTripDate){
       setEndTripDateError("*Please choose end trip date⚠️");
+    }else{
+      setEndTripDateError("");
     }
     if(!tripDetails){
       setTripDetailsError("*Description needs to be enter minimum 50 characters and maximum 500 characters⚠️");
+    }else{
+      setTripDetailsError("");
     }
-    if(destination && travelerNumbers && startTripDate && endTripDate && travelerNumbers){
+    if(destination && travelerNumbers && startTripDate && endTripDate && travelerNumbers && tripDetails){
       toast.success("Booking successfful");
       setTravelerNumbers(""); setStartTripDate(""); setEndTripDate(""); setTripDetails(""); setDestinationError(""); 
       setTravelerNumbersError(""); setStartTripDateError(""); setEndTripDateError(""); setTripDetailsError("");
@@ -121,7 +134,7 @@ const Book = () => {
   return (
     <BookSection>
       <PageHeading pageHeading="Book" />
-      
+    
     <div id="booking" className="container py-5">
       <div className="row">
         <div className="d-flex flex-column justify-content-center col col-lg-6" data-aos="fade-right" data-aos-delay="100">

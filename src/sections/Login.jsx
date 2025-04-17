@@ -28,11 +28,9 @@ const Login = ({knowName}) => {
     // Login
   const [loginEmail, setLoginEmail] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
+
   const [loginEmailError, setLoginEmailError] = useState("");
   const [loginPasswordError, setLoginPasswordError] = useState("");
-
-  // show user name after login on navbar
-  const [userName, setUserName] = useState("");
 
   // collect login user data
   const handleEmail = (e) => {
@@ -50,10 +48,9 @@ const Login = ({knowName}) => {
       setLoginPasswordError("Please enter password⚠️");
       return;
     }
-    const storedUser = JSON.parse(localStorage.getItem("user"))
+    const storedUser = JSON.parse(localStorage.getItem("user"));
     if(storedUser && storedUser.email === loginEmail && storedUser.password === loginPassword){
         toast.success("Login successful");
-        setUserName(storedUser.name);
         knowName(storedUser.name);
     }else{
       toast.error("invalid credentials");
