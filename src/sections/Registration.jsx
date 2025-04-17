@@ -52,6 +52,8 @@ const Registration = () => {
       useEffect(()=>{
         if(emailPatternMatched && contactPatternMatched && birthDatePatternMatched && namePatternMatched && passwordPatternMatched){
             setCloseModal("modal");
+          }else{
+            setCloseModal("");
           }
       },[emailPatternMatched, namePatternMatched, contactPatternMatched, passwordPatternMatched, birthDatePatternMatched]);
       
@@ -65,6 +67,7 @@ const Registration = () => {
       setEmailPatternMatched(true);
     }else{
       setEmailError("email format is incorrect⚠️")
+      setEmailPatternMatched(false);
     }
   };
   // name validation
@@ -81,6 +84,7 @@ const Registration = () => {
       setNamePatternMatched(true);
     }else{
       setNameError("Enter a valid name⚠️");
+      setNamePatternMatched(false);
     };
   };
 
@@ -93,6 +97,7 @@ const Registration = () => {
       setContactPatternMatched(true);
     }else{
       setContactError("Enter valid Mobile number⚠️");
+      setContactPatternMatched(false);
     }
   }
 
@@ -105,6 +110,7 @@ const Registration = () => {
       setPasswordPatternMatched(true);
     }else{
       setPasswordError("Please enter strong password and should be 12 characters long⚠️");
+      setPasswordPatternMatched(false);
     }
   }
    
@@ -117,6 +123,7 @@ const Registration = () => {
         setBirthDatePatternMatched(true);
     }else{
         setBirthDateError("Please provide a valid date");
+        setBirthDatePatternMatched(false);
     }
   }
 
@@ -140,7 +147,7 @@ const Registration = () => {
           if(!password){
             setPasswordError("Please enter password⚠️")
           }
-          if(nameError, contactError, birthDateError, emailError, passwordError){
+          if(nameError || contactError || birthDateError || emailError || passwordError){
               toast.error("Error during registration");
               return;
           }
